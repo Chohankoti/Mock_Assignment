@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Offcanvas from 'react-bootstrap/Offcanvas';
+import { MdOutlineArrowUpward, MdOutlineArrowDownward } from "react-icons/md";
 
 const Tables = () => {
     const [data, setData] = useState([
@@ -177,7 +178,15 @@ const Tables = () => {
                     className="px-4 py-2 mr-5 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                     onClick={handleSortByFinalGrade}
                 >
-                    Sort by Final Grade
+                    <div className="flex flex-row justify-center items-center">
+                        <div>
+                            Sort by Final Grade 
+                        </div>
+                        <div className='ml-2'>
+                            {sortOrder === 'asc' ? <MdOutlineArrowUpward size={20}/> : <MdOutlineArrowDownward size={20} />}
+                        </div>
+                    </div>
+
                 </button>
                 <button
                     className="px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
@@ -270,14 +279,14 @@ const Tables = () => {
 
             <Offcanvas show={show} onHide={handleClose}>
                 <Offcanvas.Header closeButton>
-                    <Offcanvas.Title><h2 className="text-lg font-semibold mb-2">Statistics</h2></Offcanvas.Title>
+                    <Offcanvas.Title><h2 className="text-lg font-semibold mb-2 underline items-center flex justify-center">Statistics</h2></Offcanvas.Title>
                 </Offcanvas.Header>
                 <Offcanvas.Body>
                     <div>
-                        <p>Average grade: {statistics.averageGrade.toFixed(2)}</p>
-                        <p>Maximal grade: {statistics.maxGrade}</p>
-                        <p>Minimal grade: {statistics.minGrade}</p>
-                        <p>Total number of students: {statistics.totalStudents}</p>
+                        <p><span className='font-semibold '>Average grade:</span> {statistics.averageGrade.toFixed(2)}</p>
+                        <p><span className='font-semibold '>Maximal grade:</span> {statistics.maxGrade}</p>
+                        <p><span className='font-semibold '>Minimal grade:</span> {statistics.minGrade}</p>
+                        <p><span className='font-semibold '>Total number of students:</span> {statistics.totalStudents}</p>
                     </div>
 
                 </Offcanvas.Body>
